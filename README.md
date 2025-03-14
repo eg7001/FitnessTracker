@@ -1,2 +1,2 @@
 # FitnessTracker
-A small FitnessTracking app 
+A Fitness Workout Tracker 
