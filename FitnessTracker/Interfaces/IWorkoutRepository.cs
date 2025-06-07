@@ -1,0 +1,13 @@
+using FitnessTracker.DTOs.WorkoutDTOs;
+using FitnessTracker.Models;
+
+namespace FitnessTracker.Interfaces;
+
+public interface IWorkoutRepository
+{
+    Task<Workout?> CreateWorkout(Workout workout);
+    Task<Workout?> GetWorkoutbyDate(DateTime data);
+    Task<List<Workout>> GetWorkoutsByUser(string appUserId);
+    Task<Workout> UpdateWorkout(int id, UpdateWorkoutDto dto);
+    Task<Workout> DeleteWorkout(int id);
+}
