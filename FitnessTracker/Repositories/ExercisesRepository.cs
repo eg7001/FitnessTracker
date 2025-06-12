@@ -1,3 +1,4 @@
+using FitnessTracker.Context;
 using FitnessTracker.DTOs.ExercisesDTOs;
 using FitnessTracker.Interfaces;
 using FitnessTracker.Models;
@@ -6,6 +7,12 @@ namespace FitnessTracker.Repositories;
 
 public class ExercisesRepository : IExercisesRepository
 {
+    private readonly ApplicationDbContext _dbContext;
+
+    public ExercisesRepository(ApplicationDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
     public Task<Exercises?> CreateExercises(Exercises exercises)
     {
         throw new NotImplementedException();
