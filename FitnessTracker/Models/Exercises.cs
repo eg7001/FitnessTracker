@@ -1,11 +1,10 @@
 namespace FitnessTracker.Models;
 
-public class Exercises
+public class ExerciseDefinition
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public List<Sets> Sets { get; set; }
+    public string Description { get; set; }
     
-    public int WorkoutId { get; set; }
-    public Workout Workout { get; set; }
+    public List<LoggedExercise> LoggedExercises { get; set; }     
 }

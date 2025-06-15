@@ -13,27 +13,27 @@ public class ExercisesRepository : IExercisesRepository
     {
         _dbContext = dbContext;
     }
-    public Task<Exercises?> CreateExercises(Exercises exercises)
+    public Task<ExerciseDefinition?> CreateExercises(ExerciseDefinition exercises)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Exercises?> GetExercisesById(int id)
+    public Task<ExerciseDefinition?> GetExercisesById(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<Exercises>> GetExercisesByWorkout(int workoutId)
+    public Task<List<ExerciseDefinition>> GetExercisesByWorkout(int workoutId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Exercises?> UpdateExercises(int id, UpdateExercisesDto dto)
+    public Task<ExerciseDefinition?> UpdateExercises(int id, UpdateExercisesDto dto)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Exercises?> DeleteExercises(int id)
+    public Task<ExerciseDefinition?> DeleteExercises(int id)
     {
         throw new NotImplementedException();
     }

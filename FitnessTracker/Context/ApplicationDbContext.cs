@@ -1,4 +1,5 @@
 using FitnessTracker.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,10 +15,10 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     
         public DbSet<AppUser> Userst { get; set; }
         public DbSet<Workout> Workouts { get; set; }
-        public DbSet<Exercises> Exercises { get; set; }
+        public DbSet<ExerciseDefinition> Exercises { get; set; }
         public DbSet<Sets> Sets { get; set; }
         
-       /* protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
 
         
@@ -36,5 +37,5 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
                 },
             };
             builder.Entity<IdentityRole>().HasData(roles);
-        } */
+        } 
 }

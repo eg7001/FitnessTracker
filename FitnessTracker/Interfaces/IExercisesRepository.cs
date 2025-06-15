@@ -5,10 +5,10 @@ namespace FitnessTracker.Interfaces;
 
 public interface IExercisesRepository
 {
-    Task<Exercises?> CreateExercises(Exercises exercises);
+    Task<ExerciseDefinition?> CreateExercises(ExerciseDefinition exercises);
     
-    Task<Exercises?> GetExercisesById(int id);
-    Task<List<Exercises>> GetExercisesByWorkout(int workoutId);
-    Task<Exercises?> UpdateExercises(int id, UpdateExercisesDto dto);
-    Task<Exercises?> DeleteExercises(int id);
+    Task<ExerciseDefinition?> GetExercisesById(int id);
+    Task<List<ExerciseDefinition>> GetExercisesByWorkout(int workoutId);
+    Task<ExerciseDefinition?> UpdateExercises(int id, UpdateExercisesDto dto);
+    Task<ExerciseDefinition?> DeleteExercises(int id);
 }
