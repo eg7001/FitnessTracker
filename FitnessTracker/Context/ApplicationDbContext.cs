@@ -17,6 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<ExerciseDefinition> Exercises { get; set; }
         public DbSet<Sets> Sets { get; set; }
+        public DbSet<LoggedExercise> LoggedExercises { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder)
         {

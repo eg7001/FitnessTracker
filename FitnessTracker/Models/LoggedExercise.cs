@@ -3,6 +3,7 @@ namespace FitnessTracker.Models;
 public class LoggedExercise
 {
     public int Id { get; set; }
+    
     public int WorkoutId { get; set; }
     public Workout Workout { get; set; }
     

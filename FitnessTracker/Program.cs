@@ -99,6 +99,7 @@ builder.Services.AddScoped<IExercisesRepository, ExercisesRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ISetsRepository, SetsRepository>();
 builder.Services.AddScoped<IWorkoutRepository,WorkoutRepository>();
+builder.Services.AddScoped<ILoggedExerciseRepository,LoggedExerciseRepository>();
 
 
 var app = builder.Build();
