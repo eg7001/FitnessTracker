@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250620203538_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250701214042_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,7 +133,7 @@ namespace FitnessTracker.Migrations
 
                     b.HasIndex("WorkoutId");
 
-                    b.ToTable("LoggedExercise");
+                    b.ToTable("LoggedExercises");
                 });
 
             modelBuilder.Entity("FitnessTracker.Models.Sets", b =>
@@ -216,13 +216,13 @@ namespace FitnessTracker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d74333a-85f6-46cd-a32e-adf69ff3d676",
+                            Id = "196577a8-eb3c-4dbd-802a-fc1ed322b7d5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "19e117fe-90ef-4220-a642-775ef156cf40",
+                            Id = "3cbb0bec-68d1-4235-bfb8-d7b19a16e9f8",
                             Name = "User",
                             NormalizedName = "USER"
                         });

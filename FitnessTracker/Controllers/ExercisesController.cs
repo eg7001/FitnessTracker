@@ -1,4 +1,6 @@
+using FitnessTracker.DTOs.ExercisesDTOs;
 using FitnessTracker.Interfaces;
+using FitnessTracker.Mappers;
 using FitnessTracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -31,13 +33,14 @@ public class ExercisesController : ControllerBase
     [Authorize]
     [HttpPost]
     [Route("createExercises")]
-    public async Task<ActionResult<ExerciseDefinition>> CreateExercises(ExerciseDefinition exerciseDefinition)
+    public async Task<ActionResult<ReturnExerciseDto>> CreateExercises(CreateExerciseDto exerciseDefinition)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState); 
         }
-        return BadRequest("Not yet implemented");
+        await _exercisesRepository.CreateExercises(exerciseDefinition.ToExerciseDefinitionFromDto());
+        return Ok(exerciseDefinition);
     }
 
     [Authorize]
@@ -61,6 +64,11 @@ public class ExercisesController : ControllerBase
         {
             return BadRequest(ModelState); 
         }
-        return BadRequest("Not yet implemented");
+        var exerciseDefinition = await _exercisesRepository.DeleteExercises(id);
+        if (exerciseDefinition == null)
+        {
+            return BadRequest("Not Found");
+        }
+        return Ok(exerciseDefinition);
     }
 }

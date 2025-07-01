@@ -1,6 +1,6 @@
 namespace FitnessTracker.DTOs.ExercisesDTOs;
 
-public class UpdateExercisesDto
+public class CreateExerciseDto
 {
     
     public string Name { get; set; }

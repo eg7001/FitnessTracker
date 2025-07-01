@@ -26,7 +26,6 @@
 
     <ItemGroup>
       <Folder Include="ExtensionsANDServices\" />
-      <Folder Include="Mappers\" />
     </ItemGroup>
 
 </Project>

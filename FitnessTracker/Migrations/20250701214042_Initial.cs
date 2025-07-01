@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FitnessTracker.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -240,7 +240,7 @@ namespace FitnessTracker.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "LoggedExercise",
+                name: "LoggedExercises",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -250,15 +250,15 @@ namespace FitnessTracker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LoggedExercise", x => x.Id);
+                    table.PrimaryKey("PK_LoggedExercises", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LoggedExercise_Exercises_ExerciseDefinitionId",
+                        name: "FK_LoggedExercises_Exercises_ExerciseDefinitionId",
                         column: x => x.ExerciseDefinitionId,
                         principalTable: "Exercises",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LoggedExercise_Workouts_WorkoutId",
+                        name: "FK_LoggedExercises_Workouts_WorkoutId",
                         column: x => x.WorkoutId,
                         principalTable: "Workouts",
                         principalColumn: "Id",
@@ -282,9 +282,9 @@ namespace FitnessTracker.Migrations
                 {
                     table.PrimaryKey("PK_Sets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sets_LoggedExercise_LoggedExerciseId",
+                        name: "FK_Sets_LoggedExercises_LoggedExerciseId",
                         column: x => x.LoggedExerciseId,
-                        principalTable: "LoggedExercise",
+                        principalTable: "LoggedExercises",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -295,8 +295,8 @@ namespace FitnessTracker.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0d74333a-85f6-46cd-a32e-adf69ff3d676", null, "Admin", "ADMIN" },
-                    { "19e117fe-90ef-4220-a642-775ef156cf40", null, "User", "USER" }
+                    { "196577a8-eb3c-4dbd-802a-fc1ed322b7d5", null, "Admin", "ADMIN" },
+                    { "3cbb0bec-68d1-4235-bfb8-d7b19a16e9f8", null, "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -337,13 +337,13 @@ namespace FitnessTracker.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_LoggedExercise_ExerciseDefinitionId",
-                table: "LoggedExercise",
+                name: "IX_LoggedExercises_ExerciseDefinitionId",
+                table: "LoggedExercises",
                 column: "ExerciseDefinitionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LoggedExercise_WorkoutId",
-                table: "LoggedExercise",
+                name: "IX_LoggedExercises_WorkoutId",
+                table: "LoggedExercises",
                 column: "WorkoutId");
 
             migrationBuilder.CreateIndex(
@@ -382,7 +382,7 @@ namespace FitnessTracker.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "LoggedExercise");
+                name: "LoggedExercises");
 
             migrationBuilder.DropTable(
                 name: "Exercises");
