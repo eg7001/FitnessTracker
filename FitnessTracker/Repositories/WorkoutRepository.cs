@@ -1,14 +1,25 @@
+using FitnessTracker.Context;
 using FitnessTracker.DTOs.WorkoutDTOs;
 using FitnessTracker.Interfaces;
 using FitnessTracker.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FitnessTracker.Repositories;
 
 public class WorkoutRepository : IWorkoutRepository
 {
-    public Task<Workout?> CreateWorkout(Workout workout)
+    private readonly ApplicationDbContext _dbContext;
+
+    public WorkoutRepository(ApplicationDbContext dbContext)
     {
-        throw new NotImplementedException();
+        _dbContext = dbContext;
+    }
+    public async Task<Workout?> CreateWorkout(Workout workout)
+    {
+        await _dbContext.AddAsync(workout);
+        await _dbContext.SaveChangesAsync();
+        
+        return workout;
     }
 
     public Task<Workout?> GetWorkoutbyDate(DateTime data)
@@ -21,13 +32,31 @@ public class WorkoutRepository : IWorkoutRepository
         throw new NotImplementedException();
     }
 
-    public Task<Workout> UpdateWorkout(int id, UpdateWorkoutDto dto)
+    public async Task<Workout> UpdateWorkout(int id, UpdateWorkoutDto dto)
     {
-        throw new NotImplementedException();
+        var workoutModel = await _dbContext.Workouts.FirstOrDefaultAsync(x => x.Id == id);
+        if (workoutModel == null)
+        {
+            return null;
+        }
+
+        workoutModel.Name = dto.Name;
+        workoutModel.Date = dto.Date;
+        workoutModel.LoggedExercises = dto.LoggedExercises;
+        await _dbContext.SaveChangesAsync();
+        return workoutModel;
     }
 
-    public Task<Workout> DeleteWorkout(int id)
+    public  async Task<Workout> DeleteWorkout(int id)
     {
-        throw new NotImplementedException();
+        var workoutModel = await _dbContext.Workouts.FirstOrDefaultAsync(x => x.Id == id);
+        if (workoutModel == null)
+        {
+            return null;
+        }
+        
+        _dbContext.Workouts.Remove(workoutModel);
+        await _dbContext.SaveChangesAsync();
+        return workoutModel;
     }
 }

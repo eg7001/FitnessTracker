@@ -1,4 +1,7 @@
+using System.Security.Claims;
+using FitnessTracker.DTOs.WorkoutDTOs;
 using FitnessTracker.Interfaces;
+using FitnessTracker.Mappers;
 using FitnessTracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,12 +11,15 @@ namespace FitnessTracker.Controllers;
 public class WorkoutsController : ControllerBase
 {
    private readonly IWorkoutRepository _workoutRepository;
+   private readonly IHttpContextAccessor _accessor;
 
-   public WorkoutsController(IWorkoutRepository workoutRepository)
+   public WorkoutsController(IWorkoutRepository workoutRepository,IHttpContextAccessor accessor)
    {
       _workoutRepository = workoutRepository;
+      _accessor = accessor;
    }
-   
+   private string GetUserId() =>
+      _accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
    [Authorize]
    [HttpGet]
    [Route("getWorkout")]
@@ -30,13 +36,23 @@ public class WorkoutsController : ControllerBase
    [Authorize]
    [HttpPost]
    [Route("createWorkout")]
-   public async Task<ActionResult<Workout>> CreateWorkout(Workout workout)
+   public async Task<ActionResult<Workout>> CreateWorkout(CreateWorkoutDto dto)
    {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState); 
       }
-      return BadRequest("Not yet implemented");
+      var userId = GetUserId();
+      var workout = new Workout
+      {
+         Name = dto.Name,
+         Date = dto.Date,
+         AppUserId = userId
+      };
+      
+      await _workoutRepository.CreateWorkout(workout);
+
+      return NoContent();
    }
 
    [Authorize]
@@ -60,7 +76,14 @@ public class WorkoutsController : ControllerBase
       {
          return BadRequest(ModelState); 
       }
-      return BadRequest("Not yet implemented");
+
+      var workoutModel = await _workoutRepository.DeleteWorkout(id);
+      if (workoutModel == null)
+      {
+         return NotFound();
+      }
+
+      return Ok(workoutModel);
    }
    
 }

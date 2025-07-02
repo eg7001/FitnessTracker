@@ -2,10 +2,11 @@ using FitnessTracker.Models;
 
 namespace FitnessTracker.DTOs.WorkoutDTOs;
 
-public class UpdateWorkoutDto
+public class CreateWorkoutDto
 {
+    
     public string Name { get; set; }
     
     public DateTime? Date { get; set; } 
-    public List<LoggedExercise>? LoggedExercises { get; set; } 
+    
 }

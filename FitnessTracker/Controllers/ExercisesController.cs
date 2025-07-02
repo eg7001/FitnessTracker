@@ -19,15 +19,19 @@ public class ExercisesController : ControllerBase
     
     [Authorize]
     [HttpGet]
-    [Route("getExercises")]
-    public async Task<ActionResult<List<ExerciseDefinition>>> GetExercises()
+    [Route("getExercise/{id:int}")]
+    public async Task<ActionResult<ReturnExerciseDto>> GetExerciseById([FromRoute] int id)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState); 
         }
-
-        return BadRequest("Not yet implemented");
+        var retu = await _exercisesRepository.GetExercisesById(id);
+        if (retu == null)
+        {
+            return BadRequest("Not Found");
+        }
+        return retu.ToDtoFromExercise();
     }
    
     [Authorize]
