@@ -2,6 +2,7 @@ using FitnessTracker.Context;
 using FitnessTracker.DTOs.WorkoutDTOs;
 using FitnessTracker.Interfaces;
 using FitnessTracker.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitnessTracker.Repositories;
@@ -20,6 +21,15 @@ public class WorkoutRepository : IWorkoutRepository
         await _dbContext.SaveChangesAsync();
         
         return workout;
+    }
+
+    public async Task<Workout?> GetWorkoutById(int id, string userId)
+    {
+        return await _dbContext.Workouts.Include(w => w.LoggedExercises)
+            .ThenInclude(e => e.Sets)
+            .Include(w => w.LoggedExercises)
+            .ThenInclude(e => e.ExerciseDefinition)
+            .FirstOrDefaultAsync(w => w.Id == id && w.AppUserId == userId);
     }
 
     public Task<Workout?> GetWorkoutbyDate(DateTime data)
@@ -42,7 +52,6 @@ public class WorkoutRepository : IWorkoutRepository
 
         workoutModel.Name = dto.Name;
         workoutModel.Date = dto.Date;
-        workoutModel.LoggedExercises = dto.LoggedExercises;
         await _dbContext.SaveChangesAsync();
         return workoutModel;
     }

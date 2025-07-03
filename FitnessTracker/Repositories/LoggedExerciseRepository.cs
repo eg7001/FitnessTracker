@@ -22,7 +22,7 @@ public class LoggedExerciseRepository : ILoggedExerciseRepository
         return loggedExercise;
     }
 
-    public async Task<LoggedExercise?> UpdateLoggedExercise(int id, UpdateLoggedExerciseDto dto)
+    public async Task<LoggedExercise?> UpdateLoggedExercise(int id, LoggedExercise dto)
     {
         var exists = await _dbContext.LoggedExercises.FirstOrDefaultAsync(x => x.Id == id);
         if (exists == null)

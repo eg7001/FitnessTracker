@@ -7,5 +7,4 @@ public class UpdateWorkoutDto
     public string Name { get; set; }
     
     public DateTime? Date { get; set; } 
-    public List<LoggedExercise>? LoggedExercises { get; set; } 
 }

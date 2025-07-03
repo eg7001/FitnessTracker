@@ -20,17 +20,19 @@ public class WorkoutsController : ControllerBase
    }
    private string GetUserId() =>
       _accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+   
    [Authorize]
    [HttpGet]
-   [Route("getWorkout")]
-   public async Task<ActionResult<List<Workout>>> GetWorkouts()
+   [Route("getWorkout/{id:int}")]
+   public async Task<ActionResult<Workout>> GetWorkoutById([FromRoute] int id)
    {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState); 
       }
 
-      return BadRequest("Not yet implemented");
+      var userId = GetUserId();
+      return await _workoutRepository.GetWorkoutById(id, userId);
    }
    
    [Authorize]
@@ -58,13 +60,14 @@ public class WorkoutsController : ControllerBase
    [Authorize]
    [HttpPut]
    [Route("updateWorkout")]
-   public async Task<ActionResult<Workout>> UpdateWorkout(int id, Workout workout)
+   public async Task<ActionResult<Workout>> UpdateWorkout(int id, UpdateWorkoutDto dto)
    {
       if (!ModelState.IsValid)
       {
          return BadRequest(ModelState); 
       }
-      return BadRequest("Not yet implemented");
+
+      return await _workoutRepository.UpdateWorkout(id, dto);
    }
    
    [Authorize]
