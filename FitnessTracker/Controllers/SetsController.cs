@@ -1,3 +1,4 @@
+using FitnessTracker.DTOs.SetsDTOs;
 using FitnessTracker.Interfaces;
 using FitnessTracker.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -16,8 +17,8 @@ public class SetsController : ControllerBase
      
     [Authorize]
     [HttpGet]
-    [Route("getSets")]
-    public async Task<ActionResult<List<Sets>>> GetSets()
+    [Route("getSetById/{setId}")]
+    public async Task<ActionResult<Sets>> GetSets()
     {
         if (!ModelState.IsValid)
         {
@@ -30,25 +31,28 @@ public class SetsController : ControllerBase
     [Authorize]
     [HttpPost]
     [Route("createSets")]
-    public async Task<ActionResult<Sets>> CreateSets(Sets sets)
+    public async Task<ActionResult<Sets>> CreateSets([FromBody] Sets sets)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState); 
         }
-        return BadRequest("Not yet implemented");
+        return Ok(await _setsRepository.CreateSets(sets));
     }
 
     [Authorize]
     [HttpPut]
     [Route("updateSets")]
-    public async Task<ActionResult<Sets>> UpdateSets(int id, Sets sets)
+    public async Task<ActionResult<Sets>> UpdateSets(int id, UpdateSetsDto sets)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState); 
         }
-        return BadRequest("Not yet implemented");
+        var exists = await _setsRepository.UpdateSets(id, sets);
+        if (exists == null)
+            return BadRequest("Not Found");
+        return Ok(exists);
     }
    
     [Authorize]
@@ -60,6 +64,11 @@ public class SetsController : ControllerBase
         {
             return BadRequest(ModelState); 
         }
-        return BadRequest("Not yet implemented");
+
+        var exists = await _setsRepository.DeleteSets(id);
+        if(exists==null)
+            return BadRequest("Set not found");
+        
+        return Ok(exists);
     }
 }

@@ -29,7 +29,6 @@ public class LoggedExerciseRepository : ILoggedExerciseRepository
         {
             return null;
         }
-
         exists.WorkoutId = dto.WorkoutId;
         exists.ExerciseDefinitionId = dto.ExerciseDefinitionId;
 
@@ -38,9 +37,14 @@ public class LoggedExerciseRepository : ILoggedExerciseRepository
         return exists;
     }
 
-    public Task<List<LoggedExercise>> GetByIdLoggedExercise(int loggedExerciseId)
+    public async Task<LoggedExercise?> GetByIdLoggedExercise(int loggedExerciseId)
     {
-        throw new NotImplementedException();
+        var exists =  await _dbContext.LoggedExercises.FirstOrDefaultAsync(x => x.Id == loggedExerciseId);
+        if (exists == null)
+        {
+            return  null;
+        }
+        return exists;
     }
 
     public async Task<LoggedExercise?> DeleteLoggedExercise(int id)

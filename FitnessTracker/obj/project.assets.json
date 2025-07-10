@@ -5165,19 +5165,19 @@
     ]
   },
   "packageFolders": {
-    "/home/pdox/.nuget/packages/": {}
+    "/home/paradox/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/pdox/Programmim/FitnessTracker/FitnessTracker/FitnessTracker.csproj",
+      "projectUniqueName": "/home/paradox/Programim/FitnessTracker/FitnessTracker/FitnessTracker.csproj",
       "projectName": "FitnessTracker",
-      "projectPath": "/home/pdox/Programmim/FitnessTracker/FitnessTracker/FitnessTracker.csproj",
-      "packagesPath": "/home/pdox/.nuget/packages/",
-      "outputPath": "/home/pdox/Programmim/FitnessTracker/FitnessTracker/obj/",
+      "projectPath": "/home/paradox/Programim/FitnessTracker/FitnessTracker/FitnessTracker.csproj",
+      "packagesPath": "/home/paradox/.nuget/packages/",
+      "outputPath": "/home/paradox/Programim/FitnessTracker/FitnessTracker/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/pdox/.nuget/NuGet/NuGet.Config"
+        "/home/paradox/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -5268,7 +5268,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.104/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.107/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

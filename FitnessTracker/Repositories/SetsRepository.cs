@@ -1,3 +1,4 @@
+using FitnessTracker.Context;
 using FitnessTracker.DTOs.SetsDTOs;
 using FitnessTracker.Interfaces;
 using FitnessTracker.Models;
@@ -6,14 +7,34 @@ namespace FitnessTracker.Repositories;
 
 public class SetsRepository: ISetsRepository
 {
-    public Task<Sets?> CreateSets(Sets sets)
+    private readonly ApplicationDbContext _context;
+
+    public SetsRepository(ApplicationDbContext context)
     {
-        throw new NotImplementedException();
+       _context = context; 
+    }
+    public async Task<Sets?> CreateSets(Sets sets)
+    {
+        await _context.AddAsync(sets);
+        await _context.SaveChangesAsync();
+        return sets;
     }
 
-    public Task<Sets?> UpdateSets(int id, UpdateSetsDto dto)
+    public async Task<Sets?> UpdateSets(int id, UpdateSetsDto dto)
     {
-        throw new NotImplementedException();
+        var exists = _context.Sets.FirstOrDefault(s => s.Id == id);
+        if (exists == null) 
+        {
+            return null;
+        }
+
+        exists.Reps = dto.Reps;
+        exists.Weight = dto.Weight;
+        exists.Comment = dto.Comment;
+        exists.LoggedExerciseId = dto.LoggedExerciseId;
+        await _context.SaveChangesAsync();
+
+        return exists;
     }
 
     public Task<List<Sets>> GetSetsByWorkout(int workoutId)
@@ -21,8 +42,13 @@ public class SetsRepository: ISetsRepository
         throw new NotImplementedException();
     }
 
-    public Task<Sets?> DeleteSets(int id)
+    public async Task<Sets?> DeleteSets(int id)
     {
-        throw new NotImplementedException();
+        var exists = _context.Sets.FirstOrDefault(s => s.Id == id);
+        if (exists == null)
+            return null;
+        _context.Sets.Remove(exists);
+        await _context.SaveChangesAsync();
+        return exists;
     }
 }

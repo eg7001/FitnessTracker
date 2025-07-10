@@ -60,7 +60,7 @@ public class WorkoutsController : ControllerBase
    [Authorize]
    [HttpPut]
    [Route("updateWorkout")]
-   public async Task<ActionResult<Workout>> UpdateWorkout(int id, UpdateWorkoutDto dto)
+   public async Task<ActionResult<Workout>> UpdateWorkout(int id,[FromBody] UpdateWorkoutDto dto)
    {
       if (!ModelState.IsValid)
       {
