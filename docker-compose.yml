@@ -1,9 +1,33 @@
-version: "3.9"
+
 services:
-  fitnesstracker:
-    image: fitnesstracker:latest
-    build: .
+  db:
+    image: mysql:8.0
+    container_name: fitnesstracker_db
+    environment:
+      MYSQL_ROOT_PASSWORD: Kingi_123
+      MYSQL_DATABASE: fitnessTracker
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fitnesstracker_api
     ports:
       - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:5000
+      ConnectionStrings__DefaultConnection: "server=${DB_HOST};port=${DB_PORT};database=${DB_NAME};user=${DB_USER};password=${DB_PASSWORD}"
+
+
+volumes:
+  db_data:

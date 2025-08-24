@@ -1,31 +1,23 @@
-# Stage 1: Build
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# Copy solution & project files
-COPY FitnessTracker.sln .
-COPY FitnessTracker/ ./FitnessTracker/
+# Copy only what we need (relative to compose build context = project root)
+COPY ../FitnessTracker/ ./FitnessTracker/
 
-# Restore dependencies
-RUN dotnet restore
-
-# Copy the rest of the code
-COPY . .
-
-# Build & publish
 WORKDIR /src/FitnessTracker
-RUN dotnet publish -c Release -o /app/publish
 
-# Stage 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+# Restore and publish
+RUN dotnet restore
+RUN dotnet publish -c Release -o /app
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
+COPY --from=build /app ./
 
-# Copy the published output
-COPY --from=build /app/publish .
-
-# Expose port
+# Listen on 5000 inside the container
+ENV ASPNETCORE_URLS=http://+:5000
 EXPOSE 5000
-# Force ASP.NET Core to listen on all interfaces
-ENV ASPNETCORE_URLS=http://0.0.0.0:5000
-# Run the app
+
 ENTRYPOINT ["dotnet", "FitnessTracker.dll"]

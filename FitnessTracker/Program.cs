@@ -101,15 +101,25 @@ builder.Services.AddScoped<ISetsRepository, SetsRepository>();
 builder.Services.AddScoped<IWorkoutRepository,WorkoutRepository>();
 builder.Services.AddScoped<ILoggedExerciseRepository, LoggedExerciseRepository>();
 
+builder.Configuration.GetConnectionString("DefaultConnection");
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-app.UseSwagger();                                // Enable Swagger JSON
+// Automatically apply EF Core migrations
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>(); // replace with your actual DbContext type
+    db.Database.Migrate();
+}
+
+
+
+app.UseSwagger();                               
 app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "FitnessTracker API V1");
-    options.RoutePrefix = "swagger";            // Swagger UI available at /swagger
+    options.RoutePrefix = "swagger";            
 });
 
 app.Urls.Add("http://0.0.0.0:5000");   
