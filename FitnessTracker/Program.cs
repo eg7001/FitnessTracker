@@ -99,17 +99,20 @@ builder.Services.AddScoped<IExercisesRepository, ExercisesRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ISetsRepository, SetsRepository>();
 builder.Services.AddScoped<IWorkoutRepository,WorkoutRepository>();
-builder.Services.AddScoped<ILoggedExerciseRepository,LoggedExerciseRepository>();
+builder.Services.AddScoped<ILoggedExerciseRepository, LoggedExerciseRepository>();
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();                                // Enable Swagger JSON
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "FitnessTracker API V1");
+    options.RoutePrefix = "swagger";            // Swagger UI available at /swagger
+});
+
+app.Urls.Add("http://0.0.0.0:5000");   
 
 app.UseHttpsRedirection();
 

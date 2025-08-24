@@ -50,13 +50,13 @@ public class ExercisesController : ControllerBase
     [Authorize]
     [HttpPut]
     [Route("updateExercises")]
-    public async Task<ActionResult<ExerciseDefinition>> UpdateExercises(int id, ExerciseDefinition exerciseDefinition)
+    public async Task<ActionResult<ExerciseDefinition>> UpdateExercises(int id, UpdateExercisesDto exerciseDefinition)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState); 
         }
-        return BadRequest("Not yet implemented");
+        return Ok(await _exercisesRepository.UpdateExercises(id, exerciseDefinition));
     }
    
     [Authorize]

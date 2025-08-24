@@ -145,7 +145,6 @@
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/obj/Debug/net9.0/FitnessTracker.sourcelink.json
-/home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/System.Text.Json.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/Azure.Core.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/Azure.Identity.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/Microsoft.Data.SqlClient.dll
@@ -157,7 +156,6 @@
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/System.ClientModel.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/System.Configuration.ConfigurationManager.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/System.Drawing.Common.dll
-/home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/System.Formats.Asn1.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/System.Memory.Data.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/System.Runtime.Caching.dll
 /home/pdox/Programmim/FitnessTracker/FitnessTracker/bin/Debug/net9.0/System.Security.Cryptography.ProtectedData.dll

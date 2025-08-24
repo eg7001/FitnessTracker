@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FitnessTracker.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -295,8 +295,8 @@ namespace FitnessTracker.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "196577a8-eb3c-4dbd-802a-fc1ed322b7d5", null, "Admin", "ADMIN" },
-                    { "3cbb0bec-68d1-4235-bfb8-d7b19a16e9f8", null, "User", "USER" }
+                    { "4d7445f4-b784-458c-a2f2-d1af46d710ee", null, "User", "USER" },
+                    { "7a027dbf-d7a6-419c-89cf-b4713432cfbe", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
