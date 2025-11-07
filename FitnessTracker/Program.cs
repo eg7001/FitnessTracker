@@ -57,9 +57,8 @@ builder.Services.AddControllers()
 var connectionSring = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseMySql(connectionSring,ServerVersion.AutoDetect(connectionSring));
-});
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {

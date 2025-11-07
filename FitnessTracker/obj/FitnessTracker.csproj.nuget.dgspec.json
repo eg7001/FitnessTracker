@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/pdox/Programmim/FitnessTracker/FitnessTracker/FitnessTracker.csproj": {}
+    "/home/paradox/Programim/FitnessTracker/FitnessTracker/FitnessTracker.csproj": {}
   },
   "projects": {
-    "/home/pdox/Programmim/FitnessTracker/FitnessTracker/FitnessTracker.csproj": {
+    "/home/paradox/Programim/FitnessTracker/FitnessTracker/FitnessTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pdox/Programmim/FitnessTracker/FitnessTracker/FitnessTracker.csproj",
+        "projectUniqueName": "/home/paradox/Programim/FitnessTracker/FitnessTracker/FitnessTracker.csproj",
         "projectName": "FitnessTracker",
-        "projectPath": "/home/pdox/Programmim/FitnessTracker/FitnessTracker/FitnessTracker.csproj",
-        "packagesPath": "/home/pdox/.nuget/packages/",
-        "outputPath": "/home/pdox/Programmim/FitnessTracker/FitnessTracker/obj/",
+        "projectPath": "/home/paradox/Programim/FitnessTracker/FitnessTracker/FitnessTracker.csproj",
+        "packagesPath": "/home/paradox/.nuget/packages/",
+        "outputPath": "/home/paradox/Programim/FitnessTracker/FitnessTracker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/pdox/.nuget/NuGet/NuGet.Config"
+          "/home/paradox/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -47,7 +47,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[9.0.10, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -57,7 +57,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[9.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -77,9 +77,9 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
-            "Pomelo.EntityFrameworkCore.MySql": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[9.0.0-preview.3.efcore.9.0.0, )"
+              "version": "[9.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -105,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.109/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.110/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
